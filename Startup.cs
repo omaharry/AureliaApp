@@ -25,7 +25,7 @@ namespace AureliaApp
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("balls!");
+                await context.Response.WriteAsync("Hello World!");
             });
         }
 
