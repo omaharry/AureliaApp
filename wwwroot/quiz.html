@@ -3,8 +3,8 @@
     <h1>Game of Thrones Sword or 80s Metal Band?</h1>
     <form role="form">
       <h3 class="well">Test your obscure pop-culture knowledge. Are the following the names of 
-          an 80's metal band or a sword from the popular HBO series, Game of Thrones</h3>
-      <div repeat.for="question of questions" style="margin: 10px">
+          an 80's metal band or a sword from the popular HBO series, Game of Thrones?</h3>
+      <div repeat.for="question of questions" class="col-sm-6">
         <label for="radioGroup${$index}">${question.nameCheck.famousName}</label>
         <fieldset disabled.bind="question.questionLocked">
         <div id="radiGroup${$index}">
@@ -14,6 +14,7 @@
                 change.delegate="question.checked()"/> Band <br />
         </div>
         </fieldset>
+        <div>&nbsp;
         <template if.bind="question.hasAlert">
             <template if.bind="question.answeredCorrectly">
                 <div class="alert alert-success">
@@ -26,14 +27,17 @@
                 </div>
             </template>
         </template>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">How did I do?</button>
+      <div class="col-xs-12">
+      <button type="submit" class="btn btn-primary col-xs-4">How did I do?</button>
       <template if.bind="showScore">
-        <div class="alert alert-info">
+        <div class="alert alert-info col-xs-8">
             ${percentageCorrect}%
-            See how you did compared to the <strong><a href.one-way="quizUrl" target="_blank"> Game of Thrones cast</a></strong.
+            See how you did compared to the <strong><a href.one-way="quizUrl" target="_blank"> Game of Thrones cast</a></strong>.
         </div>
       </template>
+      </div>
     </form>
   </section>
 </template>
