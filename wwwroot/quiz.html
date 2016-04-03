@@ -1,0 +1,14 @@
+<template>
+  <section>
+    <h1>Game of Thrones Sword or 80s Metal Band</h1>
+    <form role="form">
+      <h2>Test your obscure pop-culture knowledge. Are the following the names of 
+          an 80's metal band or sword from Game of Thrones</h2>
+      <div repeat.for="question of questions">
+        <label for="question${index}">${question.nameCheck.famousName}</label>
+
+      </div>
+      <button type="submit" class="btn btn-primary">How did I do?</button>
+    </form>
+  </section>
+</template>
