@@ -2,26 +2,9 @@
 
 import { AppRouter } from 'aurelia-router';
 
-// export class App {
-//     message: string;
- 
-//     constructor(router: any) {
-//         this.message = "Hello from me!";
-//     }
-// } 
-
 export class App {
     message: string;
     constructor() {
-        this.message = "";
+        this.message = "Hello Lease Team World";
     }
-
-    activate() {
-        this.message = "Hello from Aurelia!";
-    }
-
-    changeMessage() {
-        this.message = "Goodbye!";
-    }
-
 }

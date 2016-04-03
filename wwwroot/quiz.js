@@ -4,22 +4,30 @@ define(["require", "exports"], function (require, exports) {
     var band = "band";
     var Quiz = (function () {
         function Quiz() {
+            this.quizUrl = "https://www.youtube.com/watch?v=RWzLN7DPNjs";
             this.questions = createNameChecks();
-            this.numberCorrect = 0;
+            this.percentageCorrect = 0;
             this.showScore = false;
         }
         Quiz.prototype.calculateScore = function () {
+            var numberAnswered = 0;
             var numberCorrect = 0;
             this.questions.forEach(function (element) {
-                if (element.answeredCorrectly == null) {
-                    alert("There is still pop-culture quizzing that needs your attention");
-                    return;
-                }
-                else {
-                    numberCorrect++;
+                if (element.answeredCorrectly != null) {
+                    numberAnswered++;
+                    numberCorrect = element.answeredCorrectly ? numberCorrect + 1 : numberCorrect;
                 }
             });
-            this.numberCorrect = (numberCorrect / this.questions.length) * 100;
+            this.calculationAlert(numberAnswered, numberCorrect, this.questions.length);
+        };
+        Quiz.prototype.calculationAlert = function (numberAnswered, numberCorrect, totalQuestions) {
+            if (numberAnswered != totalQuestions) {
+                alert("Try to answer them all. It will be time well wasted!");
+            }
+            else {
+                this.percentageCorrect = Math.round((numberCorrect / totalQuestions) * 100);
+                this.showScore = true;
+            }
         };
         return Quiz;
     }());
@@ -65,9 +73,12 @@ define(["require", "exports"], function (require, exports) {
     exports.Question = Question;
     function createNameChecks() {
         var questions = [];
-        questions.push(new Question(new NameCheck("Heart Eater", sword), "Correct. The sword belongs/ed to his Douchiness, Joeffrey Baratheon", "Nope."));
-        questions.push(new Question(new NameCheck("Crimson Death", band), "Whoa. You've heard of them?", "Sorry. If you were from Peru, you might know this."));
+        questions.push(new Question(new NameCheck("Heart Eater", sword), "Correct. belonged to the King everybody loved to hate, Joffrey Baratheon", "Nope."));
+        questions.push(new Question(new NameCheck("Crimson Death", band), "Whoa. You've heard of them?", "Sorry. Peruvian metal band."));
         questions.push(new Question(new NameCheck("Dark Sister", sword), "Your GoT knowledge is scary awesome", "I believe you're thinking of Twisted Sister."));
+        questions.push(new Question(new NameCheck("Savage Grace", band), "Well. Technically, they're prog rock. But Nice job!", "Sounds like a perfectly good name for a sword that George R.R. Martin did not plagarize."));
+        questions.push(new Question(new NameCheck("Oathkeeper", sword), "Yep. Wielded by Brienne of Tarth: Lady, She-knight, Oathkeeper, Asskicker", "Sorry."));
+        questions.push(new Question(new NameCheck("Lightbringer", sword), "Correct. The only thing more intimidating than a sword, is a sword on fire.", "A more proper metal band name would be Lightslayer."));
         return questions;
     }
 });

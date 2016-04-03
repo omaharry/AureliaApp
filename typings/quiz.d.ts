@@ -1,10 +1,12 @@
 /// <reference path="../typings/tsd.d.ts" />
 export declare class Quiz {
     questions: Question[];
-    numberCorrect: number;
+    percentageCorrect: number;
     showScore: boolean;
+    quizUrl: string;
     constructor();
     calculateScore(): void;
+    private calculationAlert(numberAnswered, numberCorrect, totalQuestions);
 }
 export declare class NameCheck {
     famousName: string;

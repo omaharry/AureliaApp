@@ -1,10 +1,10 @@
 <template>
   <section class="container" submit.delegate="calculateScore()">
-    <h1>Game of Thrones Sword or 80s Metal Band</h1>
+    <h1>Game of Thrones Sword or 80s Metal Band?</h1>
     <form role="form">
-      <h2>Test your obscure pop-culture knowledge. Are the following the names of 
-          an 80's metal band or sword from Game of Thrones</h2>
-      <div repeat.for="question of questions">
+      <h3 class="well">Test your obscure pop-culture knowledge. Are the following the names of 
+          an 80's metal band or a sword from the popular HBO series, Game of Thrones</h3>
+      <div repeat.for="question of questions" style="margin: 10px">
         <label for="radioGroup${$index}">${question.nameCheck.famousName}</label>
         <fieldset disabled.bind="question.questionLocked">
         <div id="radiGroup${$index}">
@@ -16,19 +16,24 @@
         </fieldset>
         <template if.bind="question.hasAlert">
             <template if.bind="question.answeredCorrectly">
-            <div id="alert" class="alert aalert-success">
-                ${question.displayAlert}
-            </div>
+                <div class="alert alert-success">
+                    ${question.displayAlert}
+                </div>
             </template>
             <template if.bind="!question.answeredCorrectly">
-                <div id="alert" class="alert alert-danger">
-                ${question.displayAlert}
-            </div>
+                <div class="alert alert-danger">
+                    ${question.displayAlert}
+                </div>
             </template>
         </template>
       </div>
       <button type="submit" class="btn btn-primary">How did I do?</button>
-      <div class="alert alert-info">${numberCorrect}</div>
+      <template if.bind="showScore">
+        <div class="alert alert-info">
+            ${percentageCorrect}%
+            See how you did compared to the <strong><a href.one-way="quizUrl" target="_blank"> Game of Thrones cast</a></strong.
+        </div>
+      </template>
     </form>
   </section>
 </template>
